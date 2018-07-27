@@ -108,7 +108,7 @@ describe('handler', () => {
     expect(getMessage('error', 0)).toEqual('[ERROR] Unrecognized content-range: stuff 99-999')
   })
 
-  it('complains a multipart range response, but logs all the bytes', async () => {
+  it('does not log multipart range response', async () => {
     REQUEST.headers = {range: [{value: 'bytes=0-10,20-30'}]}
     RESPONSE.headers['content-length'][0].value = '296'
     RESPONSE.headers['content-type'] = [{value: 'multipart/byteranges; boundary=CloudFront:ED763B67C14CAB99C599FC5279DAF6FD'}]
