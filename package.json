@@ -7,7 +7,8 @@
   "description": "Log bytes downloaded by a CloudFront CDN",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "zip build.zip index.js"
   },
   "repository": "git@github.com:PRX/dovetail-bytes-lambda.git",
   "keywords": [
