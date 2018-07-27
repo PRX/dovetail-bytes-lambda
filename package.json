@@ -1,0 +1,27 @@
+{
+  "name": "dovetail-bytes-lambda",
+  "version": "0.0.1",
+  "engines": {
+    "node": "8.10.0"
+  },
+  "description": "Log bytes downloaded by a CloudFront CDN",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": "git@github.com:PRX/dovetail-bytes-lambda.git",
+  "keywords": [
+    "lambda",
+    "cloudfront",
+    "bytes"
+  ],
+  "author": "ryan cavis <ryan@prx.org>",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/PRX/dovetail-bytes-lambda/issues"
+  },
+  "homepage": "https://github.com/PRX/dovetail-bytes-lambda#readme",
+  "devDependencies": {
+    "jest": "^23.4.1"
+  }
+}
