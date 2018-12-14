@@ -40,7 +40,6 @@ function findListenerSession(str) {
   if (id) {
     return id
   } else {
-    console.warn(`[WARN] No listener session present: ${str}`)
     return null
   }
 }

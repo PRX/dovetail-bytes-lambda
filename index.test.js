@@ -90,13 +90,11 @@ describe('handler', () => {
     REQUEST.querystring = 'foo=bar&ls='
     await exec()
     expect(console.info).toHaveBeenCalledTimes(0)
-    expect(console.warn).toHaveBeenCalledTimes(1)
-    expect(getMessage('warn', 0)).toEqual('[WARN] No listener session present: foo=bar&ls=')
+    expect(console.warn).toHaveBeenCalledTimes(0)
     delete REQUEST.querystring
     await exec()
     expect(console.info).toHaveBeenCalledTimes(0)
-    expect(console.warn).toHaveBeenCalledTimes(2)
-    expect(getMessage('warn', 1)).toEqual('[WARN] No listener session present: undefined')
+    expect(console.warn).toHaveBeenCalledTimes(0)
   })
 
   it('only logs valid content-range', async () => {
