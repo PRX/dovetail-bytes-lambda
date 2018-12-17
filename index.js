@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
     const region = (arn || '').replace(/^arn:aws:lambda:/, '').replace(/:.+$/, '')
     const method = request.method
     const status = parseInt(response.status, 10)
-    const uuid = findRequestId(request.querystring)
+    const session = findListenerSession(request.querystring)
     const digest = findDigest(request.uri)
     const length = findContentLength(response.headers)
 
@@ -23,8 +23,8 @@ exports.handler = (event, context, callback) => {
       const total = findRangeTotal(range, length)
       const rangeStart = findRangeStart(range)
       const rangeEnd = findRangeEnd(range, rangeStart, length)
-      if (method === 'GET' && status >= 200 && status < 300 && length > 0 && uuid) {
-        const data = {uuid: uuid, start: rangeStart, end: rangeEnd, total: total, digest: digest, region: region}
+      if (method === 'GET' && status >= 200 && status < 300 && length > 0 && session) {
+        const data = {ls: session, start: rangeStart, end: rangeEnd, total: total, digest: digest, region: region}
         const json = JSON.stringify(data)
         console.info(json)
       }
@@ -34,13 +34,12 @@ exports.handler = (event, context, callback) => {
   }
   callback(null, response)
 }
-function findRequestId(str) {
-  const param = (str || '').split('&').find(s => s.startsWith('reqid='))
-  const id = (param || '').replace(/^reqid=/, '')
+function findListenerSession(str) {
+  const param = (str || '').split('&').find(s => s.startsWith('ls='))
+  const id = (param || '').replace(/^ls=/, '')
   if (id) {
     return id
   } else {
-    console.warn(`[WARN] No reqid present: ${str}`)
     return null
   }
 }
