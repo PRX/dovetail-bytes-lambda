@@ -86,7 +86,7 @@ describe('handler', () => {
     expect(console.info).toHaveBeenCalledTimes(0)
   })
 
-  it('only logs reqid bytes', async () => {
+  it('only logs listener-session bytes', async () => {
     REQUEST.querystring = 'foo=bar&ls='
     await exec()
     expect(console.info).toHaveBeenCalledTimes(0)
