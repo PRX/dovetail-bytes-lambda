@@ -21,10 +21,10 @@ exports.handler = (event, context, callback) => {
     // range must be valid, if present
     if (range !== false && requestRange !== false) {
       const total = findRangeTotal(range, length)
-      const rangeStart = findRangeStart(range)
-      const rangeEnd = findRangeEnd(range, rangeStart, length)
+      const start = findRangeStart(range)
+      const end = findRangeEnd(range, start, length)
       if (method === 'GET' && status >= 200 && status < 300 && length > 0 && listenerEpisode) {
-        const data = {le: listenerEpisode, start: rangeStart, end: rangeEnd, total: total, digest: digest, region: region}
+        const data = {le: listenerEpisode, start, end, total, digest, region, day: getDay()}
         const json = JSON.stringify(data)
         console.info(json)
       }
@@ -95,4 +95,7 @@ function findRangeStart(range) {
 function findRangeEnd(range, start, length) {
   const bytes = range.replace(/[0-9]+-/, '').replace(/\/.+$/, '')
   return parseInt(bytes, 10) || (start + length - 1)
+}
+function getDay() {
+  return new Date().toISOString().split('T')[0]
 }

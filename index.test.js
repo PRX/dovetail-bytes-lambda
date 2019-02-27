@@ -1,8 +1,10 @@
 const handler = require('./index').handler
+const now = new Date(1548029470000) // 2019-01-21T00:11:10.000Z
 
 describe('handler', () => {
 
   beforeEach(() => {
+    global.Date = jest.fn(() => now)
     jest.spyOn(global.console, 'info').mockImplementation(() => null)
     jest.spyOn(global.console, 'warn').mockImplementation(() => null)
     jest.spyOn(global.console, 'error').mockImplementation(() => null)
@@ -29,26 +31,28 @@ describe('handler', () => {
     delete RESPONSE.headers['content-range']
     await exec()
     expect(console.info).toHaveBeenCalledTimes(1)
-    expect(getJSON('info', 0)).toMatchObject({
+    expect(getJSON('info', 0)).toEqual({
       le: '1234abcd',
       start: 0,
       end: 987654320,
       total: 987654321,
       digest: 'the_digest',
       region: 'us-my-region-1',
+      day: '2019-01-21',
     })
   })
 
   it('logs partial downloads', async () => {
     await exec()
     expect(console.info).toHaveBeenCalledTimes(1)
-    expect(getJSON('info', 0)).toMatchObject({
+    expect(getJSON('info', 0)).toEqual({
       le: '1234abcd',
       start: 99,
       end: 999,
       total: 987654321,
       digest: 'the_digest',
       region: 'us-my-region-1',
+      day: '2019-01-21',
     })
   })
 
