@@ -38,7 +38,7 @@ describe('handler', () => {
       total: 987654321,
       digest: 'the_digest',
       region: 'us-my-region-1',
-      day: '2019-01-21',
+      ts: 1548029470,
     })
   })
 
@@ -52,7 +52,7 @@ describe('handler', () => {
       total: 987654321,
       digest: 'the_digest',
       region: 'us-my-region-1',
-      day: '2019-01-21',
+      ts: 1548029470,
     })
   })
 
