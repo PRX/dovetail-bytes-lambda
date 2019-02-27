@@ -21,7 +21,7 @@ describe('handler', () => {
 
   let REQUEST, RESPONSE
   beforeEach(() => {
-    REQUEST = {method: 'GET', querystring: 'ls=1234abcd', uri: '/the_program_id/the_digest/the_filename.mp3'}
+    REQUEST = {method: 'GET', querystring: 'le=1234abcd', uri: '/the_program_id/the_digest/the_filename.mp3'}
     RESPONSE = {status: '200', headers: {'content-length': [{value: '987654321'}], 'content-range': [{value: 'bytes 99-999/987654321'}]}}
   })
 
@@ -30,7 +30,7 @@ describe('handler', () => {
     await exec()
     expect(console.info).toHaveBeenCalledTimes(1)
     expect(getJSON('info', 0)).toMatchObject({
-      ls: '1234abcd',
+      le: '1234abcd',
       start: 0,
       end: 987654320,
       total: 987654321,
@@ -43,7 +43,7 @@ describe('handler', () => {
     await exec()
     expect(console.info).toHaveBeenCalledTimes(1)
     expect(getJSON('info', 0)).toMatchObject({
-      ls: '1234abcd',
+      le: '1234abcd',
       start: 99,
       end: 999,
       total: 987654321,
@@ -87,7 +87,7 @@ describe('handler', () => {
   })
 
   it('only logs listener-session bytes', async () => {
-    REQUEST.querystring = 'foo=bar&ls='
+    REQUEST.querystring = 'foo=bar&le='
     await exec()
     expect(console.info).toHaveBeenCalledTimes(0)
     expect(console.warn).toHaveBeenCalledTimes(0)

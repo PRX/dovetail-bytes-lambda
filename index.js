@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
     const region = (arn || '').replace(/^arn:aws:lambda:/, '').replace(/:.+$/, '')
     const method = request.method
     const status = parseInt(response.status, 10)
-    const session = findListenerSession(request.querystring)
+    const listenerEpisode = findListenerEpisode(request.querystring)
     const digest = findDigest(request.uri)
     const length = findContentLength(response.headers)
 
@@ -23,8 +23,8 @@ exports.handler = (event, context, callback) => {
       const total = findRangeTotal(range, length)
       const rangeStart = findRangeStart(range)
       const rangeEnd = findRangeEnd(range, rangeStart, length)
-      if (method === 'GET' && status >= 200 && status < 300 && length > 0 && session) {
-        const data = {ls: session, start: rangeStart, end: rangeEnd, total: total, digest: digest, region: region}
+      if (method === 'GET' && status >= 200 && status < 300 && length > 0 && listenerEpisode) {
+        const data = {le: listenerEpisode, start: rangeStart, end: rangeEnd, total: total, digest: digest, region: region}
         const json = JSON.stringify(data)
         console.info(json)
       }
@@ -34,9 +34,9 @@ exports.handler = (event, context, callback) => {
   }
   callback(null, response)
 }
-function findListenerSession(str) {
-  const param = (str || '').split('&').find(s => s.startsWith('ls='))
-  const id = (param || '').replace(/^ls=/, '')
+function findListenerEpisode(str) {
+  const param = (str || '').split('&').find(s => s.startsWith('le='))
+  const id = (param || '').replace(/^le=/, '')
   if (id) {
     return id
   } else {
