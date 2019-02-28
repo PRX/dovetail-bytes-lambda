@@ -24,8 +24,7 @@ exports.handler = (event, context, callback) => {
       const start = findRangeStart(range)
       const end = findRangeEnd(range, start, length)
       if (method === 'GET' && status >= 200 && status < 300 && length > 0 && listenerEpisode) {
-        const ts = Math.trunc(new Date().getTime() / 1000)
-        const data = {le: listenerEpisode, start, end, total, digest, region, ts}
+        const data = {le: listenerEpisode, start, end, total, digest, region}
         const json = JSON.stringify(data)
         console.info(json)
       }

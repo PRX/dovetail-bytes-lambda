@@ -1,5 +1,5 @@
 const handler = require('./index').handler
-const now = new Date(1548029470000) // 2019-01-21T00:11:10.000Z
+const now = new Date(1234567891234)
 
 describe('handler', () => {
 
@@ -38,7 +38,6 @@ describe('handler', () => {
       total: 987654321,
       digest: 'the_digest',
       region: 'us-my-region-1',
-      ts: 1548029470,
     })
   })
 
@@ -52,7 +51,6 @@ describe('handler', () => {
       total: 987654321,
       digest: 'the_digest',
       region: 'us-my-region-1',
-      ts: 1548029470,
     })
   })
 

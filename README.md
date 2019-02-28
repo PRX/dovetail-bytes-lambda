@@ -17,7 +17,6 @@ GET https://my.cloudfront.cdn/1234/the-digest/filename.mp3?le=the-listener-episo
   "total":316645,
   "digest":"the-digest",
   "region":"us-east-2",
-  "ts":"<seconds-since-epoch>"
 }
 ```
 
