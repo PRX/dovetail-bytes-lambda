@@ -2,7 +2,7 @@
   "name": "dovetail-bytes-lambda",
   "version": "0.0.1",
   "engines": {
-    "node": "8.10.0"
+    "node": ">= 8.10.0"
   },
   "description": "Log bytes downloaded by a CloudFront CDN",
   "main": "index.js",
