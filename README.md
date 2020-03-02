@@ -20,6 +20,13 @@ GET https://my.cloudfront.cdn/1234/the-digest/filename.mp3?le=the-listener-episo
 }
 ```
 
+- `le` - "listener episode" assigned by the Dovetail redirect. Normally a hash of the request's User-Agent, IP address, and episode guid. But can really be any unique identifier for "this listener downloading this episode".
+- `start` - first byte sent to the user (0-indexed)
+- `end` - last byte sent to the user (0-indexed)
+- `total` - byte size of the _entire_ file (not just the sent range of bytes)
+- `digest` - unique string id for this arrangement of ad/original mp3 files provided by Dovetail
+- `region` - AWS region the edge lambda is running in
+
 # Developing
 
 To get started, first install dev dependencies with `yarn`.  Then run `yarn test`.  End of list!
