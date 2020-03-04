@@ -35,7 +35,7 @@ A listener makes the initial request to [Dovetail](https://github.com/PRX/intern
 
 This lambda logs the listener episode and exactly which bytes of the mp3 were downloaded.
 
-The resulting CloudWatch Logs are shipped over AWS Kinesis to the [dovetail-counts-lambda](https://github.com/PRX/dovetail-counts-lambda). The bytes downloaded for each listener-episode are accumulated in Redis, until they've pass the IAB 2.0 threshold to count as downloads / ad-impressions.
+The resulting CloudWatch Logs are shipped over AWS Kinesis to the [dovetail-counts-lambda](https://github.com/PRX/dovetail-counts-lambda). The bytes downloaded for each listener-episode are accumulated in Redis, until they pass the IAB 2.0 threshold to count as downloads / ad-impressions.
 
 # Developing
 
